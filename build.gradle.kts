@@ -19,6 +19,17 @@ kotlin {
         nodejs()
         browser()
     }
+
+    wasmJs {
+        browser()
+    }
+
+    wasmWasi {
+        nodejs()
+    }
+
+
+
     // TODO android!
     androidTarget {
         publishLibraryVariants("release")
