@@ -1,9 +1,11 @@
 [versions]
 kotlin = "2.1.20"
-android-compileSdk = "36"
+android-compileSdk = "35"
 android-minSdk = "21"
 
 [libraries]
+crypto-rand = { module = "org.kotlincrypto.random:crypto-rand", version = "0.5.1" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.6.2" }
 
 [bundles]
 

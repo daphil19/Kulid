@@ -1,10 +1,13 @@
+
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import java.util.Locale
+import java.util.*
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.detekt)
     alias(libs.plugins.versions)
 }
 
@@ -52,6 +55,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(libs.crypto.rand)
+                // TODO we may eventually be able to replace this with a part of the standard library
+                implementation(libs.kotlinx.datetime)
             }
         }
     }
@@ -59,9 +65,15 @@ kotlin {
 
 android {
     namespace = "dev.phillipslabs.kulid"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    compileSdk =
+        libs.versions.android.compileSdk
+            .get()
+            .toInt()
     defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
+        minSdk =
+            libs.versions.android.minSdk
+                .get()
+                .toInt()
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

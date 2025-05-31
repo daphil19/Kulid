@@ -1,0 +1,3 @@
+[*.{kt,kts}]
+# prefer the intellij default for wildcard imports over the ktlint default
+ktlint_standard_no-wildcard-imports = disabled
