@@ -4,6 +4,11 @@ const val MAX_TIME = (1 shl 48) - 1 // 2^48 - 1
 
 // TODO does it make sense to have a type?
 data class ULID(val time: Long, val random: String) {
+    init {
+        require(time >= 0L) { "Time must be non-negative" }
+        require(time <= MAX_TIME) { "Time must be less than $MAX_TIME" }
+    }
+
     override fun toString(): String {
         TODO()
     }
