@@ -41,20 +41,35 @@ kotlin {
         }
     }
 
-    // mobile (including simlulators)
-    iosArm64()
-    iosSimulatorArm64()
-    iosX64()
-
-    // native non-mobile
+    // "tiers" here are taken from https://kotlinlang.org/docs/native-target-support.html
+    // tier 1
     macosX64()
     macosArm64()
+    iosSimulatorArm64()
+    iosX64()
+    iosArm64()
+
+    // tier 2
     linuxX64()
     linuxArm64()
+    watchosSimulatorArm64()
+    watchosX64()
+    watchosArm32()
+    watchosArm64()
+    tvosSimulatorArm64()
+    tvosX64()
+    tvosArm64()
+
+    // tier 3
+    androidNativeArm32()
+    androidNativeArm64()
+    androidNativeX86()
+    androidNativeX64()
     mingwX64()
+    watchosDeviceArm64()
 
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 implementation(libs.crypto.rand)
                 // TODO we may eventually be able to replace this with a part of the standard library
