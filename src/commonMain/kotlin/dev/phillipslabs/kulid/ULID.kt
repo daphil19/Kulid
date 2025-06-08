@@ -3,6 +3,7 @@ package dev.phillipslabs.kulid
 import kotlinx.datetime.Clock
 import org.kotlincrypto.random.CryptoRand
 import kotlin.jvm.JvmInline
+import kotlin.math.absoluteValue
 
 private const val TIMESTAMP_BIT_SIZE = 48
 private const val MAX_TIME = (1 shl TIMESTAMP_BIT_SIZE) - 1 // 2^48 - 1
@@ -18,7 +19,7 @@ private const val ENCODED_ULID_SIZE = 26
 // Crockford's base32 alphabet
 private val ENCODING_CHARS = "0123456789ABCDEFGHJKMNPQRSTVWXYZ".toCharArray()
 
-// TODO we will eventually move this to a byte array once we want ot support the binary format
+// TODO we will eventually move this to a byte array once we want to support the binary format
 @JvmInline
 value class ULID private constructor(
     val value: String,
@@ -42,24 +43,46 @@ value class ULID private constructor(
             return ULID(encodeCrockfordBase32(combined))
         }
 
-        // TODO this feels wrong and brittle! I feel like I should have some tests to make sure things are working correctly...
-        private fun encodeCrockfordBase32(data: ByteArray) =
+        // ULIDS are nice in that we are byte-aligned but also don't have to worry about padding (I think?)
+        internal fun encodeCrockfordBase32(data: ByteArray) =
             buildString(ENCODED_ULID_SIZE) {
                 var prevByteIdx = -1
-                var bitIdx = 0
                 var encodingIdx = 0
                 var currentByte = 0
-                while (bitIdx < data.size * 8) {
-                    if (prevByteIdx != bitIdx % 8) {
-                        prevByteIdx = bitIdx % 8
-                        currentByte = data[bitIdx / 8].toInt()
+
+                // iterate over every bit
+                for (i in 0 until data.size * 8) {
+                    val byteIdx = i / 8
+                    // determine the current byte we are working in
+                    if (prevByteIdx != byteIdx) {
+                        prevByteIdx = byteIdx
+                        currentByte = data[byteIdx].toInt()
                     }
 
-                    encodingIdx = encodingIdx or (currentByte shr (7 - (bitIdx % 8)))
+                    val bitIdxInByte = 7 - (i % 8)
 
-                    bitIdx++
-                    if (bitIdx != 0 && bitIdx % 5 == 0) {
-                        append(ENCODING_CHARS[encodingIdx])
+                    // first, get the bit we want by shifting a mask to the right position
+                    val bitMask = 0b1 shl bitIdxInByte
+                    val bit = currentByte and bitMask
+
+                    // then, shift that bit to the right position for the encoding
+                    val bitIndexInEncodingIdx = 4 - (i % 5)
+                    val encodingShiftAmount = bitIdxInByte - bitIndexInEncodingIdx
+
+                    // normally shift to the right, but if we get a negative right shift,
+                    // shift to the left by the absolute value instead
+                    val bitForEncodingIdx =
+                        if (encodingShiftAmount >= 0) {
+                            encodingIdx or (bit shr encodingShiftAmount)
+                        } else {
+                            encodingIdx or (bit shl encodingShiftAmount.absoluteValue)
+                        }
+
+                    encodingIdx = encodingIdx or bitForEncodingIdx
+
+                    // if we reach the 5 bit mark (or are at the end), do the lookup and add the char to the string
+                    if (i % 5 == 4 || i == data.size * 8 - 1) {
+                        append(ENCODING_CHARS[encodingIdx % ENCODING_CHARS.size])
                         encodingIdx = 0
                     }
                 }
