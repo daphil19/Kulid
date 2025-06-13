@@ -5,16 +5,23 @@ import org.kotlincrypto.random.CryptoRand
 import kotlin.jvm.JvmInline
 import kotlin.math.absoluteValue
 
+// some of these are marked as internal so that tests can be conducted easier
+// ideally, they would all be private unless there's a compelling reason to expose these
+
 private const val TIMESTAMP_BIT_SIZE = 48
-private const val MAX_TIME = (1 shl TIMESTAMP_BIT_SIZE) - 1 // 2^48 - 1
+internal const val MAX_TIME = (1L shl TIMESTAMP_BIT_SIZE) - 1 // 2^48 - 1
 private const val RANDOM_BIT_SIZE = 80
 private const val ULID_BIT_SIZE = TIMESTAMP_BIT_SIZE + RANDOM_BIT_SIZE
 
 private const val ULID_BYTE_SIZE = ULID_BIT_SIZE / 8
 private const val RANDOM_BYTE_SIZE = RANDOM_BIT_SIZE / 8
-private const val TIMESTAMP_BYTE_SIZE = TIMESTAMP_BIT_SIZE / 8
+internal const val TIMESTAMP_BYTE_SIZE = TIMESTAMP_BIT_SIZE / 8
 
-private const val ENCODED_ULID_SIZE = 26
+private const val ENCODED_ULID_BYTE_SIZE = 26
+
+// ULIDs don't saturate the entirety of their encoding space, and zero-pad the bits they don't use at the front
+// as a result, we need to shift around the bit we're looking at a little bit more when placing it
+private const val ULID_ENCODING_FRONT_PADDING = ENCODED_ULID_BYTE_SIZE * 5 - ULID_BIT_SIZE
 
 // Crockford's base32 alphabet
 private val ENCODING_CHARS = "0123456789ABCDEFGHJKMNPQRSTVWXYZ".toCharArray()
@@ -25,6 +32,9 @@ value class ULID private constructor(
     val value: String,
 ) {
     companion object {
+        val MAX = ULID("7ZZZZZZZZZZZZZZZZZZZZZZZZZ")
+        val MIN = ULID("00000000000000000000000000")
+
         fun generate(timestamp: Long = Clock.System.now().toEpochMilliseconds()): ULID {
             check(timestamp >= 0L) { "Time must be non-negative" }
             check(timestamp <= MAX_TIME) { "Time must be less than $MAX_TIME" }
@@ -45,7 +55,7 @@ value class ULID private constructor(
 
         // ULIDS are nice in that we are byte-aligned but also don't have to worry about padding (I think?)
         internal fun encodeCrockfordBase32(data: ByteArray) =
-            buildString(ENCODED_ULID_SIZE) {
+            buildString(ENCODED_ULID_BYTE_SIZE) {
                 var prevByteIdx = -1
                 var encodingIdx = 0
                 var currentByte = 0
@@ -59,14 +69,18 @@ value class ULID private constructor(
                         currentByte = data[byteIdx].toInt()
                     }
 
+                    // this is what bit we are looking at in the byte we are encoding
                     val bitIdxInByte = 7 - (i % 8)
 
                     // first, get the bit we want by shifting a mask to the right position
                     val bitMask = 0b1 shl bitIdxInByte
                     val bit = currentByte and bitMask
 
-                    // then, shift that bit to the right position for the encoding
-                    val bitIndexInEncodingIdx = 4 - (i % 5)
+                    // then, shift that bit to the correct position for the encoding lookup
+                    val bitIndexInEncodingIdx = 4 - ((i + ULID_ENCODING_FRONT_PADDING) % 5)
+
+                    // this is were we have to move the masked bit to in order to get it in the right spot for the lookup
+                    // positive is to the right, negative is to the left
                     val encodingShiftAmount = bitIdxInByte - bitIndexInEncodingIdx
 
                     // normally shift to the right, but if we get a negative right shift,
@@ -78,10 +92,11 @@ value class ULID private constructor(
                             encodingIdx or (bit shl encodingShiftAmount.absoluteValue)
                         }
 
+                    // mask-in the shifted bit
                     encodingIdx = encodingIdx or bitForEncodingIdx
 
-                    // if we reach the 5 bit mark (or are at the end), do the lookup and add the char to the string
-                    if (i % 5 == 4 || i == data.size * 8 - 1) {
+                    // if we reach the 5 bit mark (accounting for any front-padding), or are at the end, do the lookup and add the char to the string
+                    if ((i + ULID_ENCODING_FRONT_PADDING) % 5 == 4 || i == data.size * 8 - 1) {
                         append(ENCODING_CHARS[encodingIdx % ENCODING_CHARS.size])
                         encodingIdx = 0
                     }
