@@ -22,10 +22,16 @@ jobs:
     strategy:
       matrix:
         include:
-          - target: iosSimulatorArm64Test
-            os: macos-latest
           - target: jvmTest
             os: ubuntu-latest
+          - target: jsTest
+            os: ubuntu-latest
+          - target: wasmJsTest
+            os: ubuntu-latest
+          - target: wasmWasiTest
+            os: ubuntu-latest
+          - target: iosSimulatorArm64Test
+            os: macos-latest
           - target: linuxX64Test
             os: ubuntu-latest
           - target: testDebugUnitTest
