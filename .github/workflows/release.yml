@@ -25,3 +25,5 @@ jobs:
           draft: false
           prerelease: false
           generate_release_notes: true
+          # this is required to trigger other actions from this action
+          token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
