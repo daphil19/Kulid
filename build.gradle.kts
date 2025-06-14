@@ -1,4 +1,5 @@
 
+import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.*
@@ -9,10 +10,11 @@ plugins {
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)
     alias(libs.plugins.versions)
+    alias(libs.plugins.vanniktech.mavenPublish)
 }
 
 group = "dev.phillipslabs"
-version = "1.0"
+version = "0.1.0"
 
 kotlin {
     jvm()
@@ -99,6 +101,40 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+}
+
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+
+    signAllPublications()
+
+    coordinates(group.toString(), "kulid", version.toString())
+
+    pom {
+        name = "Kulid"
+        description = "ULID implementation for Kotlin Multiplatform"
+        inceptionYear = "2025"
+        url = "https://github.com/daphil19/kulid"
+        licenses {
+            license {
+                name.set("The Apache License, Version 2.0")
+                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                distribution.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+            }
+        }
+        developers {
+            developer {
+                id = "daphil19"
+                name = "David Phillips"
+                url = "https://github.com/daphil19"
+            }
+        }
+        scm {
+            url = "https://github.com/daphil19/kulid"
+            connection = "scm:git:git://github.com/daphil19/kulid.git"
+            developerConnection = "scm:git:ssh://git@github.com/daphil19/kulid.git"
+        }
     }
 }
 
