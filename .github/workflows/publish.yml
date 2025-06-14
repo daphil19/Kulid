@@ -17,7 +17,8 @@ jobs:
       - name: Publish to MavenCentral
         # the publication plugin does not support it
         # see: https://github.com/gradle/gradle/issues/22779
-        run: ./gradlew publishToMavenCentral --no-configuration-cache
+        # if we ever want to not have this publish automatically go public on mavenCentral, use `publishToMavenCentral` instead
+        run: ./gradlew publishAndReleaseToMavenCentral --no-configuration-cache
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}

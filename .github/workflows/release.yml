@@ -18,7 +18,6 @@ jobs:
         
       - name: Create Release
         uses: softprops/action-gh-release@v2
-        # TODO may need to validate this!
         with:
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
