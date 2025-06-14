@@ -22,6 +22,7 @@ ULIDs are identifiers that provide:
 - Cryptographically secure random generation
 - Timestamp-based generation
 - Compliant with the ULID specification
+- Strongly typed with low overhead by leveraging kotlin [value classes](https://kotlinlang.org/docs/inline-classes.html)
 
 ## TODOs
 This library is still being developed! As a result, there are still features of the [ULID spec](https://github.com/ulid/spec) that are missing, namely:
