@@ -30,14 +30,27 @@ jobs:
             os: ubuntu-latest
           - target: wasmWasiTest
             os: ubuntu-latest
+          - target: macosX64Test
+            os: macos-latest
+          - target: macosArm64Test
+            os: macos-latest
           - target: iosSimulatorArm64Test
+            os: macos-latest
+          - target: iosX64Test
             os: macos-latest
           - target: linuxX64Test
             os: ubuntu-latest
-          - target: testDebugUnitTest
-            os: ubuntu-latest
-          - target: testReleaseUnitTest
-            os: ubuntu-latest
+          - target: watchosSimulatorArm64Test
+            os: macos-latest
+          - target: watchosX64Test
+            os: macos-latest
+          - target: tvosSimulatorArm64Test
+            os: macos-latest
+          - target: tvosX64Test
+            os: macos-latest
+          - target: mingwX64Test
+            os: windows-latest
+
     runs-on: ${{ matrix.os }}
 
     steps:
