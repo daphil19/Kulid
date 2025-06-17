@@ -13,8 +13,8 @@ kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 versions = { id = "com.github.ben-manes.versions", version = "0.52.0" }
-android-library = { id = "com.android.library", version = "8.9.2" }
+android-library = { id = "com.android.library", version = "8.9.3" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.8" }
-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "12.2.0" }
-vanniktech-mavenPublish = { id = "com.vanniktech.maven.publish", version = "0.29.0" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "12.3.0" }
+vanniktech-mavenPublish = { id = "com.vanniktech.maven.publish", version = "0.32.0" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
