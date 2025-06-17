@@ -6,6 +6,7 @@ android-minSdk = "21"
 [libraries]
 crypto-rand = { module = "org.kotlincrypto.random:crypto-rand", version = "0.5.1" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.6.2" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version = "1.8.1" }
 
 [bundles]
 
@@ -16,3 +17,4 @@ android-library = { id = "com.android.library", version = "8.9.2" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.8" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "12.2.0" }
 vanniktech-mavenPublish = { id = "com.vanniktech.maven.publish", version = "0.29.0" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

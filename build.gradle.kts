@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.versions)
     alias(libs.plugins.vanniktech.mavenPublish)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 group = "dev.phillipslabs"
@@ -76,6 +77,7 @@ kotlin {
                 implementation(libs.crypto.rand)
                 // TODO we may eventually be able to replace this with a part of the standard library
                 api(libs.kotlinx.datetime)
+                api(libs.kotlinx.serialization.core)
             }
         }
         commonTest {

@@ -110,6 +110,7 @@ Kulid supports every official Kotlin platform, including all [native targets](ht
 Kulid has minimal dependencies:
 - [kotlinx.datetime](https://github.com/Kotlin/kotlinx-datetime) for timestamp handling
 - [org.kotlincrypto.random](https://github.com/kotlincrypto/random) for secure random number generation
+- [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) (core) for serialization support
 
 ## Learn More
 If you want to chat more about this library, feel free to talk about it on the [Kotlin Slack](https://slack-chats.kotlinlang.org/), or, if you're on matrix, check out [#kulid:phillipslabs.dev](https://matrix.to/#/#kulid:phillipslabs.dev).

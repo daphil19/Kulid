@@ -1,6 +1,7 @@
 package dev.phillipslabs.kulid
 
 import kotlinx.datetime.Clock
+import kotlinx.serialization.Serializable
 import org.kotlincrypto.random.CryptoRand
 import kotlin.jvm.JvmInline
 import kotlin.math.absoluteValue
@@ -27,6 +28,7 @@ private const val ULID_ENCODING_FRONT_PADDING = ENCODED_ULID_BYTE_SIZE * 5 - ULI
 private val ENCODING_CHARS = "0123456789ABCDEFGHJKMNPQRSTVWXYZ".toCharArray()
 
 // TODO we will eventually move this to a byte array once we want to support the binary format
+@Serializable
 @JvmInline
 value class ULID private constructor(
     val value: String,
