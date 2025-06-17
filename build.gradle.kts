@@ -18,6 +18,8 @@ group = "dev.phillipslabs"
 version = "0.2.0"
 
 kotlin {
+    explicitApi()
+
     jvm()
     jvmToolchain(11)
 

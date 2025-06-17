@@ -30,14 +30,14 @@ private val ENCODING_CHARS = "0123456789ABCDEFGHJKMNPQRSTVWXYZ".toCharArray()
 // TODO we will eventually move this to a byte array once we want to support the binary format
 @Serializable
 @JvmInline
-value class ULID private constructor(
-    val value: String,
+public value class ULID private constructor(
+    public val value: String,
 ) {
-    companion object {
-        val MAX = ULID("7ZZZZZZZZZZZZZZZZZZZZZZZZZ")
-        val MIN = ULID("00000000000000000000000000")
+    public companion object {
+        public val MAX: ULID = ULID("7ZZZZZZZZZZZZZZZZZZZZZZZZZ")
+        public val MIN: ULID = ULID("00000000000000000000000000")
 
-        fun generate(timestamp: Long = Clock.System.now().toEpochMilliseconds()): ULID {
+        public fun generate(timestamp: Long = Clock.System.now().toEpochMilliseconds()): ULID {
             check(timestamp >= 0L) { "Time must be non-negative" }
             check(timestamp <= MAX_TIME) { "Time must be less than $MAX_TIME" }
 
