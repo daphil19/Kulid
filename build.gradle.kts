@@ -75,7 +75,7 @@ kotlin {
             dependencies {
                 implementation(libs.crypto.rand)
                 // TODO we may eventually be able to replace this with a part of the standard library
-                implementation(libs.kotlinx.datetime)
+                api(libs.kotlinx.datetime)
             }
         }
         commonTest {
