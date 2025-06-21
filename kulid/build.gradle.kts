@@ -23,7 +23,11 @@ kotlin {
     explicitApi()
 
     jvm()
-    jvmToolchain(11)
+    jvmToolchain(
+        libs.versions.jdk
+            .get()
+            .toInt(),
+    )
 
     js {
         nodejs()
