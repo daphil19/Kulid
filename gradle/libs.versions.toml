@@ -3,11 +3,13 @@ jdk = "11"
 kotlin = "2.1.20"
 android-compileSdk = "36"
 android-minSdk = "21"
+kotlinx-benchmark = "0.4.14"
 
 [libraries]
 crypto-rand = { module = "org.kotlincrypto.random:crypto-rand", version = "0.5.1" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.6.2" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version = "1.8.1" }
+kotlinx-benchmark-runtime = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-runtime", version.ref = "kotlinx-benchmark" }
 
 [bundles]
 
@@ -19,3 +21,5 @@ detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.8" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "12.3.0" }
 vanniktech-mavenPublish = { id = "com.vanniktech.maven.publish", version = "0.32.0" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinx-benchmark = { id = "org.jetbrains.kotlinx.benchmark", version.ref = "kotlinx-benchmark" }
+kotlin-allopen = { id = "org.jetbrains.kotlin.plugin.allopen", version.ref = "kotlin" }

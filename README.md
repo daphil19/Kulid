@@ -23,6 +23,7 @@ ULIDs are identifiers that provide:
 - Timestamp-based generation
 - Compliant with the ULID specification
 - Strongly typed with low overhead by leveraging kotlin [value classes](https://kotlinlang.org/docs/inline-classes.html)
+- Benchmark suite for performance testing
 
 ## TODOs
 This library is still being developed! As a result, there are still features of the [ULID spec](https://github.com/ulid/spec) that are missing, namely:
@@ -105,12 +106,37 @@ println(minUlid.value) // 00000000000000000000000000
 
 Kulid supports every official Kotlin platform, including all [native targets](https://kotlinlang.org/docs/native-target-support.html) 
 
+## Project Structure
+
+Kulid is organized as a Gradle multi-project build:
+
+- `:kulid` - The main library module containing the ULID implementation
+- `:benchmark` - A benchmark suite for performance testing
+
 ## Dependencies
 
 Kulid has minimal dependencies:
 - [kotlinx.datetime](https://github.com/Kotlin/kotlinx-datetime) for timestamp handling
 - [org.kotlincrypto.random](https://github.com/kotlincrypto/random) for secure random number generation
 - [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) (core) for serialization support
+
+## Benchmarks
+
+The project includes a benchmark suite built with [kotlinx.benchmark](https://github.com/Kotlin/kotlinx.benchmark) to measure the performance of ULID operations.
+
+### Running Benchmarks
+
+To run the benchmarks, use the following Gradle command:
+
+```bash
+./gradlew :benchmark:benchmark
+```
+
+This will execute all benchmarks and generate a report in the `benchmark/build/reports/benchmarks` directory.
+
+The benchmark suite includes tests for:
+- ULID generation with current timestamp
+- UUID generation, as reference
 
 ## Learn More
 If you want to chat more about this library, feel free to talk about it on the [Kotlin Slack](https://slack-chats.kotlinlang.org/), or, if you're on matrix, check out [#kulid:phillipslabs.dev](https://matrix.to/#/#kulid:phillipslabs.dev).

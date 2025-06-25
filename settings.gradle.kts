@@ -20,3 +20,4 @@ dependencyResolutionManagement {
 rootProject.name = "Kulid"
 
 include(":kulid")
+include(":benchmark")

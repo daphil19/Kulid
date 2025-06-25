@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Kulid is now Kotlin [explicit api mode](https://kotlinlang.org/docs/api-guidelines-simplicity.html#use-explicit-api-mode) compliant.
+- Bump AGP version to 8.10.1
+- Add benchmark harness, comparing to Kotlin's UUID implementation
 
 ## [0.2.0] - 2025-06-17
 
