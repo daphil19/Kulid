@@ -1,6 +1,6 @@
 [versions]
 jdk = "11"
-kotlin = "2.1.20"
+kotlin = "2.2.0"
 android-compileSdk = "36"
 android-minSdk = "21"
 kotlinx-benchmark = "0.4.14"
