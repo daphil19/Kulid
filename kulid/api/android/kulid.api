@@ -1,33 +1,34 @@
-public final class dev/phillipslabs/kulid/ULID {
+public final class dev/phillipslabs/kulid/ULID : java/lang/Comparable {
 	public static final field Companion Ldev/phillipslabs/kulid/ULID$Companion;
-	public static final synthetic fun box-impl (Ljava/lang/String;)Ldev/phillipslabs/kulid/ULID;
+	public static final synthetic fun box-impl (Lkotlinx/io/bytestring/ByteString;)Ldev/phillipslabs/kulid/ULID;
+	public synthetic fun compareTo (Ljava/lang/Object;)I
+	public fun compareTo-WHHCJnI (Lkotlinx/io/bytestring/ByteString;)I
+	public static fun compareTo-WHHCJnI (Lkotlinx/io/bytestring/ByteString;Lkotlinx/io/bytestring/ByteString;)I
 	public fun equals (Ljava/lang/Object;)Z
-	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
-	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
-	public final fun getValue ()Ljava/lang/String;
+	public static fun equals-impl (Lkotlinx/io/bytestring/ByteString;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Lkotlinx/io/bytestring/ByteString;Lkotlinx/io/bytestring/ByteString;)Z
+	public final fun getValue ()Lkotlinx/io/bytestring/ByteString;
 	public fun hashCode ()I
-	public static fun hashCode-impl (Ljava/lang/String;)I
+	public static fun hashCode-impl (Lkotlinx/io/bytestring/ByteString;)I
 	public fun toString ()Ljava/lang/String;
-	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
-	public final synthetic fun unbox-impl ()Ljava/lang/String;
-}
-
-public final synthetic class dev/phillipslabs/kulid/ULID$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Ldev/phillipslabs/kulid/ULID$$serializer;
-	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public final fun deserialize-cf8O3LM (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/String;
-	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public final fun serialize--Y_liKM (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/String;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+	public static fun toString-impl (Lkotlinx/io/bytestring/ByteString;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Lkotlinx/io/bytestring/ByteString;
 }
 
 public final class dev/phillipslabs/kulid/ULID$Companion {
-	public final fun generate-cf8O3LM (J)Ljava/lang/String;
-	public static synthetic fun generate-cf8O3LM$default (Ldev/phillipslabs/kulid/ULID$Companion;JILjava/lang/Object;)Ljava/lang/String;
-	public final fun getMAX-0mmbifs ()Ljava/lang/String;
-	public final fun getMIN-0mmbifs ()Ljava/lang/String;
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public final fun fromString-cf8O3LM (Ljava/lang/String;)Lkotlinx/io/bytestring/ByteString;
+	public final fun generate-cf8O3LM (J)Lkotlinx/io/bytestring/ByteString;
+	public static synthetic fun generate-cf8O3LM$default (Ldev/phillipslabs/kulid/ULID$Companion;JILjava/lang/Object;)Lkotlinx/io/bytestring/ByteString;
+	public final fun getMAX-0mmbifs ()Lkotlinx/io/bytestring/ByteString;
+	public final fun getMIN-0mmbifs ()Lkotlinx/io/bytestring/ByteString;
+}
+
+public final class dev/phillipslabs/kulid/ULIDSerializer : kotlinx/serialization/KSerializer {
+	public static final field INSTANCE Ldev/phillipslabs/kulid/ULIDSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize-cf8O3LM (Lkotlinx/serialization/encoding/Decoder;)Lkotlinx/io/bytestring/ByteString;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize--Y_liKM (Lkotlinx/serialization/encoding/Encoder;Lkotlinx/io/bytestring/ByteString;)V
 }
 

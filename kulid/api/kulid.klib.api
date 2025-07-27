@@ -6,22 +6,14 @@
 // - Show declarations: true
 
 // Library unique name: <dev.phillipslabs:kulid>
-final value class dev.phillipslabs.kulid/ULID { // dev.phillipslabs.kulid/ULID|null[0]
+final value class dev.phillipslabs.kulid/ULID : kotlin/Comparable<dev.phillipslabs.kulid/ULID> { // dev.phillipslabs.kulid/ULID|null[0]
     final val value // dev.phillipslabs.kulid/ULID.value|{}value[0]
-        final fun <get-value>(): kotlin/String // dev.phillipslabs.kulid/ULID.value.<get-value>|<get-value>(){}[0]
+        final fun <get-value>(): kotlinx.io.bytestring/ByteString // dev.phillipslabs.kulid/ULID.value.<get-value>|<get-value>(){}[0]
 
+    final fun compareTo(dev.phillipslabs.kulid/ULID): kotlin/Int // dev.phillipslabs.kulid/ULID.compareTo|compareTo(dev.phillipslabs.kulid.ULID){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // dev.phillipslabs.kulid/ULID.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // dev.phillipslabs.kulid/ULID.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // dev.phillipslabs.kulid/ULID.toString|toString(){}[0]
-
-    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<dev.phillipslabs.kulid/ULID> { // dev.phillipslabs.kulid/ULID.$serializer|null[0]
-        final val descriptor // dev.phillipslabs.kulid/ULID.$serializer.descriptor|{}descriptor[0]
-            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // dev.phillipslabs.kulid/ULID.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
-
-        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // dev.phillipslabs.kulid/ULID.$serializer.childSerializers|childSerializers(){}[0]
-        final fun deserialize(kotlinx.serialization.encoding/Decoder): dev.phillipslabs.kulid/ULID // dev.phillipslabs.kulid/ULID.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
-        final fun serialize(kotlinx.serialization.encoding/Encoder, dev.phillipslabs.kulid/ULID) // dev.phillipslabs.kulid/ULID.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;dev.phillipslabs.kulid.ULID){}[0]
-    }
 
     final object Companion { // dev.phillipslabs.kulid/ULID.Companion|null[0]
         final val MAX // dev.phillipslabs.kulid/ULID.Companion.MAX|{}MAX[0]
@@ -29,7 +21,15 @@ final value class dev.phillipslabs.kulid/ULID { // dev.phillipslabs.kulid/ULID|n
         final val MIN // dev.phillipslabs.kulid/ULID.Companion.MIN|{}MIN[0]
             final fun <get-MIN>(): dev.phillipslabs.kulid/ULID // dev.phillipslabs.kulid/ULID.Companion.MIN.<get-MIN>|<get-MIN>(){}[0]
 
+        final fun fromString(kotlin/String): dev.phillipslabs.kulid/ULID // dev.phillipslabs.kulid/ULID.Companion.fromString|fromString(kotlin.String){}[0]
         final fun generate(kotlin/Long = ...): dev.phillipslabs.kulid/ULID // dev.phillipslabs.kulid/ULID.Companion.generate|generate(kotlin.Long){}[0]
-        final fun serializer(): kotlinx.serialization/KSerializer<dev.phillipslabs.kulid/ULID> // dev.phillipslabs.kulid/ULID.Companion.serializer|serializer(){}[0]
     }
+}
+
+final object dev.phillipslabs.kulid/ULIDSerializer : kotlinx.serialization/KSerializer<dev.phillipslabs.kulid/ULID> { // dev.phillipslabs.kulid/ULIDSerializer|null[0]
+    final val descriptor // dev.phillipslabs.kulid/ULIDSerializer.descriptor|{}descriptor[0]
+        final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // dev.phillipslabs.kulid/ULIDSerializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+    final fun deserialize(kotlinx.serialization.encoding/Decoder): dev.phillipslabs.kulid/ULID // dev.phillipslabs.kulid/ULIDSerializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+    final fun serialize(kotlinx.serialization.encoding/Encoder, dev.phillipslabs.kulid/ULID) // dev.phillipslabs.kulid/ULIDSerializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;dev.phillipslabs.kulid.ULID){}[0]
 }
