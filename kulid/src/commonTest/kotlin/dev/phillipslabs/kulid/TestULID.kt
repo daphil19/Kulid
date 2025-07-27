@@ -1,6 +1,7 @@
 package dev.phillipslabs.kulid
 
 import kotlinx.datetime.Clock
+import kotlinx.io.bytestring.ByteString
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -10,33 +11,33 @@ class TestULID {
     @Test
     fun correctCrockfordEncoding() {
         // equivalent to max-time a ULID supports
-        val bytes = ByteArray(6) { -1 }
+        val bytes = ByteString(ByteArray(ULID_BYTE_SIZE) { -1 })
 
         val encoded = ULID.encodeCrockfordBase32(bytes)
-        assertEquals("7ZZZZZZZZZ", encoded)
+        assertEquals("7ZZZZZZZZZZZZZZZZZZZZZZZZZ", encoded)
     }
 
     @Test
     fun correctTimestampBitsForMaxULID() {
         val maxTimeULID = ULID.generate(MAX_TIME)
-        assertEquals(ULID.MAX.value.take(10), maxTimeULID.value.take(10))
-        assertTrue { maxTimeULID.value <= ULID.MAX.value }
+        assertEquals(ULID.MAX.toString().take(10), maxTimeULID.toString().take(10))
+        assertTrue { maxTimeULID < ULID.MAX }
     }
 
     @Test
     fun correctTimestampBitsForMinULID() {
         val minTimeULID = ULID.generate(0L)
-        assertEquals(ULID.MIN.value.take(10), minTimeULID.value.take(10))
-        assertTrue { minTimeULID.value >= ULID.MIN.value }
+        assertEquals(ULID.MIN.toString().take(10), minTimeULID.toString().take(10))
+        assertTrue { minTimeULID >= ULID.MIN }
     }
 
     @Test
     fun ulidForCurrentTimeValid() {
         val now = Clock.System.now().toEpochMilliseconds()
         val ulid = ULID.generate(now)
-        assertTrue("ULID ${ulid.value} for timestamp $now outside of expected bounds!") {
-            ulid.value <= ULID.MAX.value &&
-                ulid.value >= ULID.MIN.value
+        assertTrue("ULID $ulid for timestamp $now outside of expected bounds!") {
+            ulid <= ULID.MAX &&
+                ulid >= ULID.MIN
         }
     }
 
@@ -52,5 +53,11 @@ class TestULID {
         assertFailsWith<IllegalStateException>("Time $tooLargeTimestamp is outside of expected bounds") {
             ULID.generate(tooLargeTimestamp)
         }
+    }
+
+    @Test
+    fun testCorrectParsingOfULIDString() {
+        val ulid = ULID.fromString("01EAWYQD59KTN275S079C9ESX7")
+        assertEquals("01EAWYQD59KTN275S079C9ESX7", ulid.toString())
     }
 }

@@ -90,6 +90,7 @@ kotlin {
                 // TODO we may eventually be able to replace this with a part of the standard library
                 api(libs.kotlinx.datetime)
                 api(libs.kotlinx.serialization.core)
+                api(libs.kotlinx.io)
             }
         }
         commonTest {

@@ -10,6 +10,7 @@ crypto-rand = { module = "org.kotlincrypto.random:crypto-rand", version = "0.5.1
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.6.2" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version = "1.8.1" }
 kotlinx-benchmark-runtime = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-runtime", version.ref = "kotlinx-benchmark" }
+kotlinx-io = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version = "0.8.0"}
 
 [bundles]
 
