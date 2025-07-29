@@ -21,6 +21,7 @@ public final class dev/phillipslabs/kulid/ULID$Companion {
 	public static synthetic fun generate-cf8O3LM$default (Ldev/phillipslabs/kulid/ULID$Companion;JILjava/lang/Object;)Lkotlinx/io/bytestring/ByteString;
 	public final fun getMAX-0mmbifs ()Lkotlinx/io/bytestring/ByteString;
 	public final fun getMIN-0mmbifs ()Lkotlinx/io/bytestring/ByteString;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
 public final class dev/phillipslabs/kulid/ULIDSerializer : kotlinx/serialization/KSerializer {
