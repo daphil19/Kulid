@@ -4,6 +4,7 @@ import kotlinx.datetime.Clock
 import kotlinx.io.Buffer
 import kotlinx.io.bytestring.ByteString
 import kotlinx.io.readByteString
+import kotlinx.serialization.Serializable
 import org.kotlincrypto.random.CryptoRand
 import kotlin.jvm.JvmInline
 import kotlin.math.absoluteValue
@@ -28,7 +29,7 @@ private const val ULID_ENCODING_FRONT_PADDING = ENCODED_ULID_BYTE_SIZE * 5 - ULI
 // Crockford's base32 alphabet
 private val ENCODING_CHARS = "0123456789ABCDEFGHJKMNPQRSTVWXYZ".toCharArray()
 
-// @Serializable
+@Serializable(with = ULIDSerializer::class)
 @JvmInline
 public value class ULID private constructor(
     public val value: ByteString,
