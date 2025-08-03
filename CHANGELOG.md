@@ -5,12 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+**Note on versioning:** This project follows semantic versioning with an emphasis on ABI compatibility. Major version numbers will be bumped when changes break ABI compatibility, even if the API remains backward compatible.
+
 ## [Unreleased]
+
+### Added
+- Added support for binary format.
+- Added an option to disable secure random for ULIDs.
+- Added KDocs for all public APIs.
 
 ### Changed
 - Kulid is now Kotlin [explicit api mode](https://kotlinlang.org/docs/api-guidelines-simplicity.html#use-explicit-api-mode) compliant.
 - Bump AGP version to 8.10.1
-- Add benchmark harness, comparing to Kotlin's UUID implementation
+- Add benchmark harness, comparing Kulid to Kotlin's UUID implementation
 
 ## [0.2.0] - 2025-06-17
 

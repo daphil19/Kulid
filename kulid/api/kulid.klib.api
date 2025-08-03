@@ -22,7 +22,7 @@ final value class dev.phillipslabs.kulid/ULID : kotlin/Comparable<dev.phillipsla
             final fun <get-MIN>(): dev.phillipslabs.kulid/ULID // dev.phillipslabs.kulid/ULID.Companion.MIN.<get-MIN>|<get-MIN>(){}[0]
 
         final fun fromString(kotlin/String): dev.phillipslabs.kulid/ULID // dev.phillipslabs.kulid/ULID.Companion.fromString|fromString(kotlin.String){}[0]
-        final fun generate(kotlin/Long = ...): dev.phillipslabs.kulid/ULID // dev.phillipslabs.kulid/ULID.Companion.generate|generate(kotlin.Long){}[0]
+        final fun generate(kotlin/Long = ..., kotlin/Boolean = ...): dev.phillipslabs.kulid/ULID // dev.phillipslabs.kulid/ULID.Companion.generate|generate(kotlin.Long;kotlin.Boolean){}[0]
         final fun serializer(): kotlinx.serialization/KSerializer<dev.phillipslabs.kulid/ULID> // dev.phillipslabs.kulid/ULID.Companion.serializer|serializer(){}[0]
     }
 }

@@ -25,11 +25,16 @@ ULIDs are identifiers that provide:
 - Strongly typed with low overhead by leveraging kotlin [value classes](https://kotlinlang.org/docs/inline-classes.html)
 - Benchmark suite for performance testing
 
+## Versioning
+
+This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html) with an emphasis on ABI compatibility. Major version numbers will be bumped when changes break ABI compatibility, even if the API remains backward compatible.
+
+For detailed information about changes between versions, please see the [CHANGELOG.md](CHANGELOG.md) file.
+
 ## TODOs
 This library is still being developed! As a result, there are still features of the [ULID spec](https://github.com/ulid/spec) that are missing, namely:
 - [ ] [Monotonicity](https://github.com/ulid/spec?tab=readme-ov-file#monotonicity)
-- [ ] [Binary Layout](https://github.com/ulid/spec?tab=readme-ov-file#binary-layout-and-byte-order)
-- [ ] Parsing ULIDs from string
+- [x] [Binary Layout](https://github.com/ulid/spec?tab=readme-ov-file#binary-layout-and-byte-order)
 
 ## Installation
 
