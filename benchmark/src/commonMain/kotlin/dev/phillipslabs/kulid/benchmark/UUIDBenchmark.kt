@@ -1,6 +1,7 @@
 package dev.phillipslabs.kulid.benchmark
 
 import kotlinx.benchmark.Benchmark
+import kotlinx.benchmark.Blackhole
 import kotlinx.benchmark.Scope
 import kotlinx.benchmark.State
 import kotlin.uuid.ExperimentalUuidApi
@@ -10,8 +11,13 @@ import kotlin.uuid.Uuid
 class UUIDBenchmark {
     @OptIn(ExperimentalUuidApi::class)
     @Benchmark
-    fun generateUUID() {
-        // right now,  ULID encodes to string on creation
-        Uuid.random().toString()
+    fun generateUUID(bh: Blackhole) {
+        bh.consume(Uuid.random())
+    }
+
+    @OptIn(ExperimentalUuidApi::class)
+    @Benchmark
+    fun generateUUIDString(bh: Blackhole) {
+        bh.consume(Uuid.random().toString())
     }
 }

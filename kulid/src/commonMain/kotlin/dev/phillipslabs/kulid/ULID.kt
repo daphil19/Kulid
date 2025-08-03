@@ -8,6 +8,7 @@ import kotlinx.serialization.Serializable
 import org.kotlincrypto.random.CryptoRand
 import kotlin.jvm.JvmInline
 import kotlin.math.absoluteValue
+import kotlin.random.Random
 
 // some of these are marked as internal so that tests can be conducted easier
 // ideally, they would all be private unless there's a compelling reason to expose these
@@ -46,7 +47,10 @@ public value class ULID private constructor(
         public val MAX: ULID = fromString("7ZZZZZZZZZZZZZZZZZZZZZZZZZ")
         public val MIN: ULID = fromString("00000000000000000000000000")
 
-        public fun generate(timestamp: Long = Clock.System.now().toEpochMilliseconds()): ULID {
+        public fun generate(
+            timestamp: Long = Clock.System.now().toEpochMilliseconds(),
+            secureRandom: Boolean = true,
+        ): ULID {
             check(timestamp >= 0L) { "Time must be non-negative" }
             check(timestamp <= MAX_TIME) { "Time must be less than $MAX_TIME" }
 
@@ -56,7 +60,14 @@ public value class ULID private constructor(
             buf.writeShort((timestamp shr 32).toShort())
             buf.writeInt(timestamp.toInt())
 
-            val randomness = CryptoRand.Default.nextBytes(ByteArray(RANDOM_BYTE_SIZE))
+            val randomness =
+                if (secureRandom) {
+                    CryptoRand.Default.nextBytes(
+                        ByteArray(RANDOM_BYTE_SIZE),
+                    )
+                } else {
+                    Random.nextBytes(ByteArray(RANDOM_BYTE_SIZE))
+                }
             buf.write(randomness)
 
             return ULID(buf.readByteString())
