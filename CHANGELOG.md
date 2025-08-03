@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 **Note on versioning:** This project follows semantic versioning with an emphasis on ABI compatibility. Major version numbers will be bumped when changes break ABI compatibility, even if the API remains backward compatible.
 
-## [Unreleased]
+## [0.3.0] - 2025-08-03
 
 ### Added
 - Added support for binary format.
