@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="kulid-wasm-js-0.2.0">
-    <output-path>$PROJECT_DIR$/kulid/build/libs</output-path>
-    <root id="archive" name="kulid-wasm-js-0.2.0.jar">
-      <element id="module-output" name="Kulid.kulid.wasmJsMain" />
-    </root>
-  </artifact>
-</component>

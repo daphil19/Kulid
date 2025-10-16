@@ -1,4 +1,5 @@
 [versions]
+# NOTE this is lower than the minimum version needed to run gradle, in order to help maximize compatibility
 jdk = "11"
 kotlin = "2.2.0"
 android-compileSdk = "36"

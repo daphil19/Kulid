@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="kulid-jvm-0.3.0">
-    <output-path>$PROJECT_DIR$/kulid/build/libs</output-path>
-    <root id="archive" name="kulid-jvm-0.3.0.jar">
-      <element id="module-output" name="Kulid.kulid.jvmMain" />
-    </root>
-  </artifact>
-</component>
