@@ -1,15 +1,15 @@
 [versions]
-# NOTE this is lower than the minimum version needed to run gradle, in order to help maximize compatibility
+# NOTE this is lower than the minimum version needed to run gradle, to help maximize compatibility
 jdk = "11"
-kotlin = "2.2.0"
+kotlin = "2.2.20"
 android-compileSdk = "36"
 android-minSdk = "21"
 kotlinx-benchmark = "0.4.14"
 
 [libraries]
-crypto-rand = { module = "org.kotlincrypto.random:crypto-rand", version = "0.5.1" }
+crypto-rand = { module = "org.kotlincrypto.random:crypto-rand", version = "0.6.0" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.6.2" }
-kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version = "1.8.1" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version = "1.9.0" }
 kotlinx-benchmark-runtime = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-runtime", version.ref = "kotlinx-benchmark" }
 kotlinx-io = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version = "0.8.0"}
 
@@ -17,10 +17,10 @@ kotlinx-io = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version = "0.8.
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-versions = { id = "com.github.ben-manes.versions", version = "0.52.0" }
-android-library = { id = "com.android.library", version = "8.10.1" }
+versions = { id = "com.github.ben-manes.versions", version = "0.53.0" }
+android-library = { id = "com.android.library", version = "8.12.3" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.8" }
-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "13.0.0" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "13.1.0" }
 vanniktech-mavenPublish = { id = "com.vanniktech.maven.publish", version = "0.34.0" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinx-benchmark = { id = "org.jetbrains.kotlinx.benchmark", version.ref = "kotlinx-benchmark" }

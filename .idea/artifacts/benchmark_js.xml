@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="benchmark-js">
+    <output-path>$PROJECT_DIR$/benchmark/build/libs</output-path>
+    <root id="archive" name="benchmark-js.jar">
+      <element id="module-output" name="Kulid.benchmark.jsMain" />
+    </root>
+  </artifact>
+</component>

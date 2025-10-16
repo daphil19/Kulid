@@ -1,4 +1,398 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PropertiesComponent">{}</component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ab6072de-7cba-4d3e-a47d-de46e6e6281b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/AndroidProjectSystem.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/benchmark_js.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/benchmark_jvm.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/benchmark_wasm_js.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/kulid_js_0_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/kulid_jvm_0_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/kulid_wasm_js_0_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/kulid_wasm_wasi_0_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kotlin-js-store/wasm/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin-js-store/wasm/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kotlin-js-store/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin-js-store/yarn.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Kulid" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="$USER_HOME$/.gradle/wrapper/dists/gradle-8.14.3-bin/cv11ve7ro1n3o1j4so8xd9n66/gradle-8.14.3" javaHome="$USER_HOME$/.asdf/installs/java/temurin-21.0.8+9.0.LTS" gradleVersion="8.14.3">
+    <option name="jvmArguments">
+      <list>
+        <option value="-Didea.compose.hot-reload=true" />
+        <option value="-Didea.compose.hot-reload.version=2" />
+      </list>
+    </option>
+  </component>
+  <component name="KotlinCodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="KotlinMultiplatform" KONAN_HOME="$USER_HOME$/.konan/kotlin-native-prebuilt-linux-x86_64-2.2.20">
+    <executable TARGET="tvos_simulator_arm64" TARGET_NAME="tvosSimulatorArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestTvosSimulatorArm64" FILE="$PROJECT_DIR$/kulid/build/bin/tvosSimulatorArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="android_arm64" TARGET_NAME="androidNativeArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestAndroidNativeArm64" FILE="$PROJECT_DIR$/kulid/build/bin/androidNativeArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="tvos_x64" TARGET_NAME="tvosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestTvosX64" FILE="$PROJECT_DIR$/kulid/build/bin/tvosX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="ios_arm64" TARGET_NAME="iosArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestIosArm64" FILE="$PROJECT_DIR$/kulid/build/bin/iosArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="macos_arm64" TARGET_NAME="macosArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestMacosArm64" FILE="$PROJECT_DIR$/kulid/build/bin/macosArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="watchos_simulator_arm64" TARGET_NAME="watchosSimulatorArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestWatchosSimulatorArm64" FILE="$PROJECT_DIR$/kulid/build/bin/watchosSimulatorArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="linux_arm64" TARGET_NAME="linuxArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestLinuxArm64" FILE="$PROJECT_DIR$/kulid/build/bin/linuxArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="macos_x64" TARGET_NAME="macosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestMacosX64" FILE="$PROJECT_DIR$/kulid/build/bin/macosX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="ios_simulator_arm64" TARGET_NAME="iosSimulatorArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestIosSimulatorArm64" FILE="$PROJECT_DIR$/kulid/build/bin/iosSimulatorArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="linux_x64" TARGET_NAME="linuxX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":benchmark:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":benchmark:linkDebugTestLinuxX64" FILE="$PROJECT_DIR$/benchmark/build/bin/linuxX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="watchos_arm32" TARGET_NAME="watchosArm32" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestWatchosArm32" FILE="$PROJECT_DIR$/kulid/build/bin/watchosArm32/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="android_x64" TARGET_NAME="androidNativeX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestAndroidNativeX64" FILE="$PROJECT_DIR$/kulid/build/bin/androidNativeX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="android_arm32" TARGET_NAME="androidNativeArm32" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestAndroidNativeArm32" FILE="$PROJECT_DIR$/kulid/build/bin/androidNativeArm32/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="mingw_x64" TARGET_NAME="mingwX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestMingwX64" FILE="$PROJECT_DIR$/kulid/build/bin/mingwX64/debugTest/test.exe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="android_x86" TARGET_NAME="androidNativeX86" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestAndroidNativeX86" FILE="$PROJECT_DIR$/kulid/build/bin/androidNativeX86/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="macos_x64" TARGET_NAME="macosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":benchmark:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":benchmark:linkDebugTestMacosX64" FILE="$PROJECT_DIR$/benchmark/build/bin/macosX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="ios_x64" TARGET_NAME="iosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestIosX64" FILE="$PROJECT_DIR$/kulid/build/bin/iosX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="watchos_x64" TARGET_NAME="watchosX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestWatchosX64" FILE="$PROJECT_DIR$/kulid/build/bin/watchosX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="tvos_arm64" TARGET_NAME="tvosArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestTvosArm64" FILE="$PROJECT_DIR$/kulid/build/bin/tvosArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="linux_x64" TARGET_NAME="linuxX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestLinuxX64" FILE="$PROJECT_DIR$/kulid/build/bin/linuxX64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="watchos_device_arm64" TARGET_NAME="watchosDeviceArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestWatchosDeviceArm64" FILE="$PROJECT_DIR$/kulid/build/bin/watchosDeviceArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="watchos_arm64" TARGET_NAME="watchosArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":kulid:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":kulid:linkDebugTestWatchosArm64" FILE="$PROJECT_DIR$/kulid/build/bin/watchosArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="macos_arm64" TARGET_NAME="macosArm64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":benchmark:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":benchmark:linkDebugTestMacosArm64" FILE="$PROJECT_DIR$/benchmark/build/bin/macosArm64/debugTest/test.kexe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="linux_x64" TARGET_NAME="linuxX64" EXECUTABLE_NAME="linuxX64Benchmark" PROJECT_PREFIX=":benchmark:" IS_TEST="false">
+      <variant NAME="Release" GRADLE_TASK=":benchmark:linkLinuxX64BenchmarkReleaseExecutableLinuxX64" FILE="$PROJECT_DIR$/benchmark/build/benchmarks/linuxX64/classes/linuxX64Benchmark.kexe" WORKING_DIR="$PROJECT_DIR$/benchmark" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+    <executable TARGET="mingw_x64" TARGET_NAME="mingwX64" EXECUTABLE_NAME="test" PROJECT_PREFIX=":benchmark:" IS_TEST="true">
+      <variant NAME="Debug" GRADLE_TASK=":benchmark:linkDebugTestMingwX64" FILE="$PROJECT_DIR$/benchmark/build/bin/mingwX64/debugTest/test.exe" WORKING_DIR="" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+    </executable>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="3482PplJAe7zg2q43kZhWHRS7PJ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.TestULID.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cidr.known.project.marker": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/daphillips/projects/Kulid/settings.gradle.kts",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.1484375",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "AndroidSdkUpdater",
+    "to.speed.mode.migration.done": "true",
+    "typescript.add.unambiguous.imports.on.the.fly": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Gradle.TestULID">
+    <configuration name="TestULID" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/kulid" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--continue" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":kulid:cleanTestDebugUnitTest" />
+            <option value=":kulid:testDebugUnitTest" />
+            <option value="--tests &quot;dev.phillipslabs.kulid.TestULID&quot;" />
+            <option value=":kulid:cleanJvmTest" />
+            <option value=":kulid:jvmTest" />
+            <option value="--tests &quot;dev.phillipslabs.kulid.TestULID&quot;" />
+            <option value=":kulid:cleanLinuxX64Test" />
+            <option value=":kulid:linuxX64Test" />
+            <option value="--tests &quot;dev.phillipslabs.kulid.TestULID&quot;" />
+            <option value=":kulid:cleanWasmJsBrowserTest" />
+            <option value=":kulid:wasmJsBrowserTest" />
+            <option value="--tests &quot;dev.phillipslabs.kulid.TestULID&quot;" />
+            <option value=":kulid:cleanWasmJsNodeTest" />
+            <option value=":kulid:wasmJsNodeTest" />
+            <option value="--tests &quot;dev.phillipslabs.kulid.TestULID&quot;" />
+            <option value=":kulid:cleanWasmWasiNodeTest" />
+            <option value=":kulid:wasmWasiNodeTest" />
+            <option value="--tests &quot;dev.phillipslabs.kulid.TestULID&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="linuxX64Benchmark[linuxX64]" type="KonanRunConfiguration" factoryName="KonanApp" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$/benchmark" PASS_PARENT_ENVS_2="true">
+      <executable TARGET="linux_x64" TARGET_NAME="linuxX64" EXECUTABLE_NAME="linuxX64Benchmark" PROJECT_PREFIX=":benchmark:" IS_TEST="false">
+        <variant NAME="Release" GRADLE_TASK=":benchmark:linkLinuxX64BenchmarkReleaseExecutableLinuxX64" FILE="$PROJECT_DIR$/benchmark/build/benchmarks/linuxX64/classes/linuxX64Benchmark.kexe" WORKING_DIR="$PROJECT_DIR$/benchmark" PROGRAM_PARAMS="">
+          <envs />
+        </variant>
+      </executable>
+      <variant NAME="Release" GRADLE_TASK=":benchmark:linkLinuxX64BenchmarkReleaseExecutableLinuxX64" FILE="$PROJECT_DIR$/benchmark/build/benchmarks/linuxX64/classes/linuxX64Benchmark.kexe" WORKING_DIR="$PROJECT_DIR$/benchmark" PROGRAM_PARAMS="">
+        <envs />
+      </variant>
+      <method v="2">
+        <option name="com.jetbrains.mpp.KonanBuildTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Kulid" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.FlaskServer">
+      <module name="Kulid" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="Kulid" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="kotlin.scripts.KotlinBuildScript.build.gradle.kts" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.TestULID" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.26830.84" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ab6072de-7cba-4d3e-a47d-de46e6e6281b" name="Changes" comment="" />
+      <created>1760580856885</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1760580856885</updated>
+      <workItem from="1760580857983" duration="3013000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
 </project>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <excludedPredefinedLibrary name="Kulid/build/js/node_modules" />
+    <excludedPredefinedLibrary name="Kulid/build/js/packages/Kulid-benchmark-test/node_modules" />
+    <excludedPredefinedLibrary name="Kulid/build/js/packages/Kulid-kulid-test/node_modules" />
+    <excludedPredefinedLibrary name="Kulid/build/wasm/node_modules" />
+    <excludedPredefinedLibrary name="Kulid/build/wasm/packages/Kulid-kulid-test/node_modules" />
+  </component>
+</project>
