@@ -14,6 +14,9 @@ import kotlin.random.Random
 // ideally, they would all be private unless there's a compelling reason to expose these
 
 private const val TIMESTAMP_BIT_SIZE = 48
+
+// this is really just used for testing
+internal const val TIMESTAMP_BYTE_SIZE = TIMESTAMP_BIT_SIZE / 8
 internal const val MAX_TIME = (1L shl TIMESTAMP_BIT_SIZE) - 1 // 2^48 - 1
 private const val RANDOM_BIT_SIZE = 80
 private const val ULID_BIT_SIZE = TIMESTAMP_BIT_SIZE + RANDOM_BIT_SIZE
@@ -52,6 +55,17 @@ private val ENCODING_CHARS = "0123456789ABCDEFGHJKMNPQRSTVWXYZ".toCharArray()
 public value class ULID private constructor(
     public val value: ByteString,
 ) : Comparable<ULID> {
+    private constructor(timestamp: Long, randomness: ByteArray) : this(
+        Buffer()
+            .apply {
+                // the timestamp we use is 48 bits, so we need to drop the uppermost 16 bits of a Long
+                // toShort() uses the least significant 16 bits of a number
+                writeShort((timestamp shr 32).toShort())
+                writeInt(timestamp.toInt())
+                write(randomness)
+            }.readByteString(),
+    )
+
     init {
         require(value.size == ULID_BYTE_SIZE) { "ULID should have $ULID_BYTE_SIZE bytes, but had ${value.size}" }
     }
@@ -75,6 +89,38 @@ public value class ULID private constructor(
      * @return A 26-character Crockford Base32 encoded string.
      */
     override fun toString(): String = encodeCrockfordBase32(value)
+
+    // we actually do need a class bc we have to keep track of the generator's state
+    // ... then again, do we really? This at least will make things faster than ripping it out
+    public class MonotonicGenerator(
+        private val secureRandom: Boolean = true,
+    ) {
+        private var lastTimestamp = 0L
+        private var lastRandom = ByteArray(RANDOM_BYTE_SIZE)
+
+        public fun next(): ULID {
+            val timestamp = Clock.System.now().toEpochMilliseconds()
+
+            if (timestamp == lastTimestamp) {
+                incrementRandom()
+            } else {
+                lastTimestamp = timestamp
+                randomBytes(secureRandom, lastRandom)
+            }
+
+            return ULID(lastTimestamp, lastRandom)
+        }
+
+        private fun incrementRandom() {
+            for (i in lastRandom.indices.reversed()) {
+                if (lastRandom[i] != 0xFF.toByte()) {
+                    lastRandom[i]++
+                    return
+                }
+            }
+            error("Random component has reached maximum value")
+        }
+    }
 
     /**
      * Companion object providing factory methods and constants for ULID creation and manipulation.
@@ -117,24 +163,7 @@ public value class ULID private constructor(
         ): ULID {
             check(timestamp >= 0L) { "Time must be non-negative" }
             check(timestamp <= MAX_TIME) { "Time must be less than $MAX_TIME" }
-
-            val buf = Buffer()
-            // the timestamp we use is 48 bits, so we need to drop the uppermost 16 bits of a Long
-            // toShort() uses the least significant 16 bits of a number
-            buf.writeShort((timestamp shr 32).toShort())
-            buf.writeInt(timestamp.toInt())
-
-            val randomness =
-                if (secureRandom) {
-                    CryptoRand.Default.nextBytes(
-                        ByteArray(RANDOM_BYTE_SIZE),
-                    )
-                } else {
-                    Random.nextBytes(ByteArray(RANDOM_BYTE_SIZE))
-                }
-            buf.write(randomness)
-
-            return ULID(buf.readByteString())
+            return ULID(timestamp, randomBytes(secureRandom))
         }
 
         /**
@@ -244,5 +273,20 @@ public value class ULID private constructor(
                     }
                 }
             }
+
+        private fun randomBytes(
+            secure: Boolean,
+            buf: ByteArray? = null,
+        ): ByteArray {
+            val buffer = buf ?: ByteArray(RANDOM_BYTE_SIZE)
+            if (secure) {
+                CryptoRand.Default.nextBytes(
+                    buffer,
+                )
+            } else {
+                Random.nextBytes(buffer)
+            }
+            return buffer
+        }
     }
 }
