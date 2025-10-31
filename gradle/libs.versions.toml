@@ -1,7 +1,7 @@
 [versions]
 # NOTE this is lower than the minimum version needed to run gradle, to help maximize compatibility
 jdk = "11"
-kotlin = "2.2.20"
+kotlin = "2.2.21"
 android-compileSdk = "36"
 android-minSdk = "21"
 kotlinx-benchmark = "0.4.14"
