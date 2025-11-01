@@ -57,7 +57,6 @@ public value class ULID private constructor(
     private constructor(timestamp: Long, randomness: ByteArray) : this(
         Buffer()
             .apply {
-                // TODO should we allow for this to be passed in to improve performance?
                 // the timestamp we use is 48 bits, so we need to drop the uppermost 16 bits of a Long
                 // toShort() uses the least significant 16 bits of a number
                 writeShort((timestamp shr 32).toShort())
@@ -90,10 +89,31 @@ public value class ULID private constructor(
      */
     override fun toString(): String = encodeCrockfordBase32(value)
 
+    /**
+     * Monotonic [ULID] generator.
+     *
+     * This generator guarantees that successive calls within the same millisecond are strictly
+     * increasing by incrementing the 80-bit random component. When the clock moves forward, a new
+     * random component is generated.
+     *
+     * Notes:
+     * - If more than 2^80 ULIDs are requested within the exact same millisecond (practically
+     *   impossible), the random component will overflow and an [IllegalStateException] is thrown.
+     * - The generator is not thread-safe; use external synchronization if sharing across threads.
+     * - By default, randomness is sourced from a cryptographically secure generator.
+     */
     public class MonotonicGenerator internal constructor(
+        // DI is used here to help make more deterministic tests
         private val randomProvider: (ByteArray) -> Unit,
         private val clock: () -> Long,
     ) {
+        /**
+         * Creates a monotonic generator.
+         *
+         * @param secureRandom When true (default), uses a cryptographically secure random source for
+         *        initializing and reseeding the random component. Set to false to use a faster
+         *        non-cryptographic PRNG when cryptographic strength is not required.
+         */
         public constructor(secureRandom: Boolean = true) : this(
             randomProvider = { randomBytes(secureRandom, it) },
             clock = { Clock.System.now().toEpochMilliseconds() },
@@ -102,6 +122,17 @@ public value class ULID private constructor(
         private var lastTimestamp = 0L
         private var lastRandom = ByteArray(RANDOM_BYTE_SIZE)
 
+        /**
+         * Generates the next monotonic ULID.
+         *
+         * - If called multiple times within the same millisecond, increments the 80-bit random
+         *   component to maintain strict monotonic ordering.
+         * - If the system clock advances, reseeds the random component.
+         *
+         * @return the next strictly increasing [ULID].
+         * @throws IllegalStateException if the random component overflows after 2^80 increments
+         *         within the same millisecond (extremely unlikely in practice).
+         */
         public fun next(): ULID {
             val timestamp = clock()
 
