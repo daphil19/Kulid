@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:function-expression-body")
+
 package dev.phillipslabs.kulid.benchmark
 
 import dev.phillipslabs.kulid.ULID
@@ -14,8 +16,8 @@ class ULIDBenchmark {
     }
 
     @Benchmark
-    fun generateULIDString(bh: Blackhole) {
-        bh.consume(ULID.generate().toString())
+    fun generateULIDString(): String {
+        return ULID.generate().toString()
     }
 
     @Benchmark
@@ -24,7 +26,7 @@ class ULIDBenchmark {
     }
 
     @Benchmark
-    fun generateInsecureRandomULIDString(bh: Blackhole) {
-        bh.consume(ULID.generate(secureRandom = false).toString())
+    fun generateInsecureRandomULIDString(): String {
+        return ULID.generate(secureRandom = false).toString()
     }
 }

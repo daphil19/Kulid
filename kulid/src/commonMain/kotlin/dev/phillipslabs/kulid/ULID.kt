@@ -57,6 +57,7 @@ public value class ULID private constructor(
     private constructor(timestamp: Long, randomness: ByteArray) : this(
         Buffer()
             .apply {
+                // TODO should we allow for this to be passed in to improve performance?
                 // the timestamp we use is 48 bits, so we need to drop the uppermost 16 bits of a Long
                 // toShort() uses the least significant 16 bits of a number
                 writeShort((timestamp shr 32).toShort())
@@ -98,7 +99,6 @@ public value class ULID private constructor(
             clock = { Clock.System.now().toEpochMilliseconds() },
         )
 
-        // these are internal so that tests can access them
         private var lastTimestamp = 0L
         private var lastRandom = ByteArray(RANDOM_BYTE_SIZE)
 
@@ -115,11 +115,16 @@ public value class ULID private constructor(
             return ULID(lastTimestamp, lastRandom)
         }
 
+        // this function has a side-effect of _always_ mutating `lastRandom`, including overflowing if it is at all 0xFF
+        // in that case, an IllegalStateException is thrown, indicating the random component overflowed
         private fun incrementRandom() {
             for (i in lastRandom.indices.reversed()) {
                 if (lastRandom[i] != 0xFF.toByte()) {
                     lastRandom[i]++
                     return
+                } else {
+                    // carry-over
+                    lastRandom[i] = 0x00.toByte()
                 }
             }
             error("Random component has reached maximum value")

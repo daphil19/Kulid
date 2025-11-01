@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:function-expression-body")
+
 package dev.phillipslabs.kulid.benchmark
 
 import kotlinx.benchmark.Benchmark
@@ -17,7 +19,7 @@ class UUIDBenchmark {
 
     @OptIn(ExperimentalUuidApi::class)
     @Benchmark
-    fun generateUUIDString(bh: Blackhole) {
-        bh.consume(Uuid.random().toString())
+    fun generateUUIDString(): String {
+        return Uuid.random().toString()
     }
 }

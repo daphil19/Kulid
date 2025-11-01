@@ -54,4 +54,17 @@ benchmark {
         register("macosArm64")
         register("mingwX64")
     }
+    configurations {
+        named("main") {
+            outputTimeUnit = "ms"
+        }
+        register("monotonic") {
+            include("Monotonic")
+            outputTimeUnit = "ms"
+        }
+        register("ulidOnly") {
+            include("ULID")
+            outputTimeUnit = "ms"
+        }
+    }
 }
