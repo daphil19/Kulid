@@ -15,6 +15,12 @@ final value class dev.phillipslabs.kulid/ULID : kotlin/Comparable<dev.phillipsla
     final fun hashCode(): kotlin/Int // dev.phillipslabs.kulid/ULID.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // dev.phillipslabs.kulid/ULID.toString|toString(){}[0]
 
+    final class MonotonicGenerator { // dev.phillipslabs.kulid/ULID.MonotonicGenerator|null[0]
+        constructor <init>(kotlin/Boolean = ...) // dev.phillipslabs.kulid/ULID.MonotonicGenerator.<init>|<init>(kotlin.Boolean){}[0]
+
+        final fun next(): dev.phillipslabs.kulid/ULID // dev.phillipslabs.kulid/ULID.MonotonicGenerator.next|next(){}[0]
+    }
+
     final object Companion { // dev.phillipslabs.kulid/ULID.Companion|null[0]
         final val MAX // dev.phillipslabs.kulid/ULID.Companion.MAX|{}MAX[0]
             final fun <get-MAX>(): dev.phillipslabs.kulid/ULID // dev.phillipslabs.kulid/ULID.Companion.MAX.<get-MAX>|<get-MAX>(){}[0]

@@ -24,6 +24,12 @@ public final class dev/phillipslabs/kulid/ULID$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class dev/phillipslabs/kulid/ULID$MonotonicGenerator {
+	public fun <init> (Z)V
+	public synthetic fun <init> (ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun next-0mmbifs ()Lkotlinx/io/bytestring/ByteString;
+}
+
 public final class dev/phillipslabs/kulid/ULIDSerializer : kotlinx/serialization/KSerializer {
 	public static final field INSTANCE Ldev/phillipslabs/kulid/ULIDSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
