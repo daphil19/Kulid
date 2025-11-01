@@ -1,12 +1,14 @@
 package dev.phillipslabs.kulid
 
+import kotlinx.datetime.Clock
 import kotlin.test.Test
+import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
 class TestULIDMonotonic {
     @Test
     fun generatorProducesNonDecreasingSequence() {
-        val gen = ULID.MonotonicGenerator(secureRandom = true)
+        val gen = ULID.MonotonicGenerator()
         var prev = gen.next()
         // Generate a reasonably large sequence to likely span multiple milliseconds
         repeat(2_000) {
@@ -21,52 +23,51 @@ class TestULIDMonotonic {
 
     @Test
     fun ulidsWithinSameMillisecondAreStrictlyIncreasing() {
-        val gen = ULID.MonotonicGenerator(secureRandom = true)
+        val staticTime = Clock.System.now().toEpochMilliseconds()
+        // insecure random is faster for tests
+        val gen = ULID.MonotonicGenerator(randomProvider = { randomBytes(false, it) }, clock = { staticTime })
 
-        // Keep trying to capture a batch generated within the same millisecond.
-        // We will iterate up to some upper bound to avoid an infinite loop on very slow environments.
-        var attempts = 0
-        var foundBatch = false
-        while (attempts++ < 50 && !foundBatch) {
-            // Start a new batch
-            val first = gen.next()
-            val tsPrefix = first.toString().take(10) // timestamp portion in Crockford Base32
+        val first = gen.next()
+        val second = gen.next()
 
-            val prev = first
+        assertTrue(
+            second > first,
+            "ULIDs within same millisecond must be strictly increasing: first=$first second=$second",
+        )
 
-            // Collect additional ULIDs while still in the same millisecond (same timestamp prefix)
-            val candidate = gen.next()
-            if (candidate.toString().startsWith(tsPrefix)) {
-                // Within same millisecond, should be strictly increasing by randomness
-                assertTrue(
-                    prev < candidate,
-                    "ULIDs within same millisecond must be strictly increasing: prev=$prev next=$candidate",
-                )
-
-                assertTrue(
-                    candidate.value
+        assertTrue(
+            second.value
+                .toByteArray()
+                .drop(TIMESTAMP_BYTE_SIZE)
+                .reversed()
+                .zip(
+                    first.value
                         .toByteArray()
                         .drop(TIMESTAMP_BYTE_SIZE)
-                        .reversed()
-                        .zip(
-                            prev.value
-                                .toByteArray()
-                                .drop(TIMESTAMP_BYTE_SIZE)
-                                .reversed(),
-                        )
-                        // any short circuits once we've found a true value to the predicate
-                        // since we only have the random bytes and they're in reverse order,
-                        // we should find the byte that incremented
-                        .any { (next, prev) ->
-                            // max value check to help avoid an overflow error
-                            prev != 0xff.toByte() && (prev + 1).toByte() == next
-                        },
+                        .reversed(),
                 )
-                foundBatch = true
-                break
-            }
-        }
+                // any short circuits once we've found a true value to the predicate
+                // since we only have the random bytes and they're in reverse order,
+                // we should find the byte that incremented
+                .any { (next, prev) ->
+                    // max value check to help avoid an overflow error
+                    prev != 0xff.toByte() && (prev + 1).toByte() == next
+                },
+        )
+    }
 
-        assertTrue(foundBatch, "Failed to observe two or more ULIDs within the same millisecond to validate strict increase")
+    @Test
+    fun ulidThrowsErrorWhenRandomIsAtMax() {
+        val staticTime = Clock.System.now().toEpochMilliseconds()
+        val gen =
+            ULID.MonotonicGenerator(
+                randomProvider = { it.fill(0xff.toByte()) },
+                clock = { staticTime },
+            )
+        // first ULID should be ok, as it uses timestamp and random to make a max ulid
+        gen.next()
+        assertFailsWith<IllegalStateException>("Failed to throw at a max-random ULID increment attempt") {
+            gen.next()
+        }
     }
 }

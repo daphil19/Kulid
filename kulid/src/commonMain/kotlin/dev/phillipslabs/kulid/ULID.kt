@@ -10,28 +10,27 @@ import kotlin.jvm.JvmInline
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 
-// some of these are marked as internal so that tests can be conducted easier
+// these are marked as internal so that tests can be conducted easier
 // ideally, they would all be private unless there's a compelling reason to expose these
 
-private const val TIMESTAMP_BIT_SIZE = 48
+internal const val TIMESTAMP_BIT_SIZE = 48
 
-// this is really just used for testing
 internal const val TIMESTAMP_BYTE_SIZE = TIMESTAMP_BIT_SIZE / 8
 internal const val MAX_TIME = (1L shl TIMESTAMP_BIT_SIZE) - 1 // 2^48 - 1
-private const val RANDOM_BIT_SIZE = 80
-private const val ULID_BIT_SIZE = TIMESTAMP_BIT_SIZE + RANDOM_BIT_SIZE
+internal const val RANDOM_BIT_SIZE = 80
+internal const val ULID_BIT_SIZE = TIMESTAMP_BIT_SIZE + RANDOM_BIT_SIZE
 
 internal const val ULID_BYTE_SIZE = ULID_BIT_SIZE / 8
-private const val RANDOM_BYTE_SIZE = RANDOM_BIT_SIZE / 8
+internal const val RANDOM_BYTE_SIZE = RANDOM_BIT_SIZE / 8
 
-private const val ENCODED_ULID_BYTE_SIZE = 26
+internal const val ENCODED_ULID_BYTE_SIZE = 26
 
 // ULIDs don't saturate the entirety of their encoding space, and zero-pad the bits they don't use at the front
 // as a result, we need to shift around the bit we're looking at a little bit more when placing it
-private const val ULID_ENCODING_FRONT_PADDING = ENCODED_ULID_BYTE_SIZE * 5 - ULID_BIT_SIZE
+internal const val ULID_ENCODING_FRONT_PADDING = ENCODED_ULID_BYTE_SIZE * 5 - ULID_BIT_SIZE
 
 // Crockford's base32 alphabet
-private val ENCODING_CHARS = "0123456789ABCDEFGHJKMNPQRSTVWXYZ".toCharArray()
+internal val ENCODING_CHARS = "0123456789ABCDEFGHJKMNPQRSTVWXYZ".toCharArray()
 
 /**
  * A Universally Unique Lexicographically Sortable Identifier (ULID).
@@ -90,22 +89,27 @@ public value class ULID private constructor(
      */
     override fun toString(): String = encodeCrockfordBase32(value)
 
-    // we actually do need a class bc we have to keep track of the generator's state
-    // ... then again, do we really? This at least will make things faster than ripping it out
-    public class MonotonicGenerator(
-        private val secureRandom: Boolean = true,
+    public class MonotonicGenerator internal constructor(
+        private val randomProvider: (ByteArray) -> Unit,
+        private val clock: () -> Long,
     ) {
+        public constructor(secureRandom: Boolean = true) : this(
+            randomProvider = { randomBytes(secureRandom, it) },
+            clock = { Clock.System.now().toEpochMilliseconds() },
+        )
+
+        // these are internal so that tests can access them
         private var lastTimestamp = 0L
         private var lastRandom = ByteArray(RANDOM_BYTE_SIZE)
 
         public fun next(): ULID {
-            val timestamp = Clock.System.now().toEpochMilliseconds()
+            val timestamp = clock()
 
             if (timestamp == lastTimestamp) {
                 incrementRandom()
             } else {
                 lastTimestamp = timestamp
-                randomBytes(secureRandom, lastRandom)
+                randomProvider(lastRandom)
             }
 
             return ULID(lastTimestamp, lastRandom)
@@ -273,20 +277,20 @@ public value class ULID private constructor(
                     }
                 }
             }
-
-        private fun randomBytes(
-            secure: Boolean,
-            buf: ByteArray? = null,
-        ): ByteArray {
-            val buffer = buf ?: ByteArray(RANDOM_BYTE_SIZE)
-            if (secure) {
-                CryptoRand.Default.nextBytes(
-                    buffer,
-                )
-            } else {
-                Random.nextBytes(buffer)
-            }
-            return buffer
-        }
     }
+}
+
+internal fun randomBytes(
+    secure: Boolean,
+    buf: ByteArray? = null,
+): ByteArray {
+    val buffer = buf ?: ByteArray(RANDOM_BYTE_SIZE)
+    if (secure) {
+        CryptoRand.Default.nextBytes(
+            buffer,
+        )
+    } else {
+        Random.nextBytes(buffer)
+    }
+    return buffer
 }
