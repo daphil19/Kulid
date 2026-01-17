@@ -16,7 +16,7 @@ plugins {
 }
 
 group = "dev.phillipslabs"
-version = "0.4.0"
+version = "0.5.0"
 
 kotlin {
     explicitApi()
