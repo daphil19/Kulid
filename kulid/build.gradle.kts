@@ -1,12 +1,11 @@
 @file:OptIn(ExperimentalWasmDsl::class, ExperimentalAbiValidation::class)
 
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.ktlint)
 
     // TODO if we need to override any config we might need a build-logic plugin!
@@ -48,11 +47,16 @@ kotlin {
     }
 
     // TODO android!
-    androidTarget {
-        publishLibraryVariants("release")
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
-        }
+    android {
+        namespace = "dev.phillipslabs.kulid"
+        compileSdk =
+            libs.versions.android.compileSdk
+                .get()
+                .toInt()
+        minSdk =
+            libs.versions.android.minSdk
+                .get()
+                .toInt()
     }
 
     // "tiers" here are taken from https://kotlinlang.org/docs/native-target-support.html
@@ -100,23 +104,23 @@ kotlin {
     }
 }
 
-android {
-    namespace = "dev.phillipslabs.kulid"
-    compileSdk =
-        libs.versions.android.compileSdk
-            .get()
-            .toInt()
-    defaultConfig {
-        minSdk =
-            libs.versions.android.minSdk
-                .get()
-                .toInt()
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-}
+// android {
+//    namespace = "dev.phillipslabs.kulid"
+//    compileSdk =
+//        libs.versions.android.compileSdk
+//            .get()
+//            .toInt()
+//    defaultConfig {
+//        minSdk =
+//            libs.versions.android.minSdk
+//                .get()
+//                .toInt()
+//    }
+//    compileOptions {
+//        sourceCompatibility = JavaVersion.VERSION_11
+//        targetCompatibility = JavaVersion.VERSION_11
+//    }
+// }
 
 mavenPublishing {
     publishToMavenCentral()

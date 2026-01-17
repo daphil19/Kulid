@@ -10,7 +10,7 @@ plugins {
 
     // these need to be defined for some of the other plugins to work correctly
     alias(libs.plugins.kotlin.multiplatform) apply false
-    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.android.kotlin.multiplatform.library) apply false
 }
 
 // checks to see if a release is "stable," meaning we don't have to worry about rc versions polluting a dependencyUpdates check
