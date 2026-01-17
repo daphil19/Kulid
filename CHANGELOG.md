@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 **Note on versioning:** This project follows semantic versioning with an emphasis on ABI compatibility. Major version numbers will be bumped when changes break ABI compatibility, even if the API remains backward compatible.
 
+## [0.5.0] - 2026-01-17
+
+### Changed
+- Bump Kotlin version to 2.3.0
+- Migrate to using new android KMP library plugin
+
+
 ## [0.4.0] - 2025-11-01
 
 ### Breaking Changes
